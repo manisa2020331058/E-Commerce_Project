@@ -26,7 +26,6 @@ A full-stack e-commerce web application where users can browse products, place o
 - Express.js
 
 ### Database:
-- (Write yours here: MongoDB / MySQL / etc.)
 
 ---
 
