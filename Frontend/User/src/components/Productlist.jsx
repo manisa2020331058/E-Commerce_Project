@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { API } from '../config';
 
 function Productlist() {
     const [products, setProducts] = useState([]);
@@ -7,7 +8,7 @@ function Productlist() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:8000/product');
+                const response = await fetch(`${API}/product`);
                 if (response.ok) {
                     const data = await response.json();
                     setProducts(data.products);

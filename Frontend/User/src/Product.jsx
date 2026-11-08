@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { API } from './config';
 
 const Product = () => {
     const { productId } = useParams(); // Get the product ID from the URL
@@ -14,7 +15,7 @@ const Product = () => {
     useEffect(() => {
         const fetchProductData = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/product/${productId}`);
+                const response = await fetch(`${API}/api/product/${productId}`);
                 if (response.ok) {
                     const data = await response.json();
                     if (data.product) {
@@ -67,7 +68,7 @@ const Product = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:8000/product/addToCart', {
+            const response = await fetch(      `${API}/product/addToCart`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

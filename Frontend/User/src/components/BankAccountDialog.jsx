@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { API } from '../config';
 const BankAccountDialog = ({ isOpen, onClose }) => {
     const [accountNumber, setAccountNumber] = useState('');
     const [secretKey, setSecretKey] = useState('');
@@ -16,7 +16,7 @@ const BankAccountDialog = ({ isOpen, onClose }) => {
                 
                 if (userId && isAdd === "true") {
                     try {
-                        const response = await fetch(`http://localhost:8000/bank/balance/${userId}`);
+                        const response = await fetch(`${API}/bank/balance/${userId}`);
                         const data = await response.json();
                         
                         if (response.ok) {
@@ -48,7 +48,7 @@ const BankAccountDialog = ({ isOpen, onClose }) => {
                 return;
             }
 
-            const response = await fetch(`http://localhost:8000/bank/addDetails/${userId}`, {
+            const response = await fetch(`${API}/bank/addDetails/${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

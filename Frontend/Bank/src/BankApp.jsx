@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaHome, FaExchangeAlt, FaHistory, FaUserCircle } from 'react-icons/fa';
 import { RiDashboardLine } from 'react-icons/ri';
 import axios from 'axios';
+import { API } from './config';
 
 function BankApp() {
     const [activeTab, setActiveTab] = useState('dashboard');
@@ -19,7 +20,7 @@ function BankApp() {
             
             if (key && accNumber) {
                 try {
-                    const response = await axios.post('http://localhost:8000/bank', {
+                    const response = await axios.post(`${API}/bank`, {
                         key: key,
                         accountNumber: accNumber
                     });

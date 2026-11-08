@@ -4,6 +4,7 @@
                                      import axios from 'axios';
                                      import Navbar from './components/Navbar';
                                      import { useNavigate } from 'react-router-dom';
+                                     import { API } from './config';
                                      const ShoppingCart = () => {
                                          const [cartItems, setCartItems] = useState([]);
                                          const [balance, setBalance] = useState(50.0); // Example balance
@@ -25,7 +26,7 @@
                                              }
                                              const fetchCartItems = async () => {
                                                  try {
-                                                     const response = await axios.get(`http://localhost:8000/cart/user/${userId}`);
+                                                     const response = await axios.get(`${API}/cart/user/${userId}`);
                                                      const items = response.data.carts.map(item => ({
                                                          id: item._id,
                                                          name: item.product_name,
@@ -46,7 +47,7 @@
                                      
                                              const fetchData = async () => {
                                                  try {
-                                                     const response = await axios.get(`http://localhost:8000/auth/${userId}/addresses`);
+                                                     const response = await axios.get(`${API}/auth/${userId}/addresses`);
                                                      console.log(response.data.addresses)
                                                      setAddresses(response.data.addresses); 
                                                      setSelectedAddressId(response.data.addresses[0]||"")
@@ -72,7 +73,7 @@
                                          const handleRemoveItem = async (id) => {
                                              try {
                                                  // Call the API to remove the item
-                                                 const response = await axios.delete(`http://localhost:8000/cart/${id}`);
+                                                 const response = await axios.delete(`${API}/cart/${id}`);
                                      
                                                  if (response.status === 200 || response.data.success) {
                                                      // Update the cart items in state
@@ -111,7 +112,7 @@
                                                  }
                                                  
                                                  console.log("Account Number:", accountNo);
-                                                 const url = `http://localhost:8000/bank/secret/${secretKey}/${accountNo}`;
+                                                 const url = `${API}/bank/secret/${secretKey}/${accountNo}`;
 
                                                  // Send a GET request to verify bank
                                                  const response = await axios.get(url);
@@ -126,7 +127,7 @@
                                                      }
 
                                                      try {
-                                                         const checkoutResponse = await axios.post("http://localhost:8000/cart/checkout", {
+                                                         const checkoutResponse = await axios.post(`${API}/cart/checkout`, {
                                                              user_id: userId,
                                                              address: selectedAddressId,
                                                          });
@@ -187,7 +188,7 @@
                                              if (newAddress) { // Check if newAddress is not empty (including whitespace)
                                                try {
                                                  const userId = localStorage.getItem('userId'); 
-                                                 const response = await axios.post(`http://localhost:8000/auth/${userId}/address`, {
+                                                 const response = await axios.post(`${API}/auth/${userId}/address`, {
                                                    address: newAddress
                                                  });
                                            

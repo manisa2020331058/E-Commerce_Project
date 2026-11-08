@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API } from '../config';
 
 export default function Login() {
     const [accountNumber, setAccountNumber] = useState('');
@@ -11,7 +12,7 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const apiUrl = "http://localhost:8000/bank";
+        const apiUrl = `${API}/bank`;
         const requestBody = {
             key: secretKey,
             accountNumber: accountNumber,

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar';
+import { API } from './config';
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ const Profile = () => {
 
     const fetchUserData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/auth/user/${userId}`);
+            const response = await axios.get(`${API}/auth/user/${userId}`);
             const user = response.data;
             setUserData({
                 name: user.name,
@@ -48,7 +49,7 @@ const Profile = () => {
 
     const fetchOrders = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/cart/orders/${userId}`);
+            const response = await axios.get(`${API}/cart/orders/${userId}`);
             setOrders(response.data.orders || []);
         } catch (error) {
             console.error('Error fetching orders:', error);
@@ -59,7 +60,7 @@ const Profile = () => {
     const handleBankDetailsSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`http://localhost:8000/bank/addDetails/${userId}`, bankDetails);
+            await axios.post(`${API}/bank/addDetails/${userId}`, bankDetails);
             toast.success('Bank details updated successfully');
             setIsEditing(false);
             fetchUserData();

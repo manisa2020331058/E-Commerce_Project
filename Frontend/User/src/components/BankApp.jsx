@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { API } from '../config';
 export default function BankApp() {
     const [currentSection, setCurrentSection] = useState("dashboard");
     const navigate = useNavigate();
+
     const name = localStorage.getItem("acc-name");
 
     useEffect(() => {
@@ -14,7 +15,7 @@ export default function BankApp() {
 
             if (key && accountNumber) {
                 try {
-                    const response = await axios.post("http://localhost:8000/bank", {
+                    const response = await axios.post(`${API}/bank`, {
                         key: key,
                         accountNumber: accountNumber,
                     });

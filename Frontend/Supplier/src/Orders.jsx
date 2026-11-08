@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import { useNavigate } from 'react-router-dom';
+import { API } from './config';
 
 const Orders = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Orders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/profile/supplier/${userId}`);
+      const response = await fetch(`${API}/profile/supplier/${userId}`);
       const data = await response.json();
       if (response.ok) {
         setOrders(data.supplierProducts.reverse() || []);
@@ -34,7 +35,7 @@ const Orders = () => {
 
   const handleConfirmOrder = async (orderId) => {
     try {
-      const response = await fetch(`http://localhost:8000/profile/verify/${orderId}`, {
+      const response = await fetch(`${API}/profile/verify/${orderId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

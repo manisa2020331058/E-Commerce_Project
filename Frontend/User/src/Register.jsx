@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import registerBg from './assets/loginbg.jpg';
+import { API } from './config';
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ function Register() {
         };
 
         try {
-            const response = await fetch('http://localhost:8000/auth/register', {
+            const response = await fetch(      `${API}/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -97,7 +98,7 @@ function Register() {
                                                 value={formData.fullname}
                                                 onChange={handleChange}
                                                 required
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                className="block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-black shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm"
                                             />
                                         </div>
                                     </div>
@@ -115,7 +116,7 @@ function Register() {
                                                 value={formData.email}
                                                 onChange={handleChange}
                                                 required
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                className="block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-black shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm"
                                             />
                                         </div>
                                     </div>
@@ -135,7 +136,7 @@ function Register() {
                                                 value={formData.password}
                                                 onChange={handleChange}
                                                 required
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                className="block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-black shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 sm:text-sm"
                                             />
                                         </div>
                                     </div>

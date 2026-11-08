@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar';
+import { API } from './config';
 
 function SupplierDashboard() {
     const [products, setProducts] = useState([]);
@@ -25,7 +26,7 @@ function SupplierDashboard() {
     const fetchProducts = async () => {
         try {
             const supplierId = localStorage.getItem('userId');
-            const response = await axios.get(`http://localhost:8000/product/supplier/${supplierId}`);
+            const response = await axios.get(`${API}/product/supplier/${supplierId}`);
             setProducts(response.data);
         } catch (error) {
             console.error('Error fetching products:', error);
@@ -89,7 +90,7 @@ function SupplierDashboard() {
 
             console.log('Sending product data:', productData);
             
-            const response = await axios.post('http://localhost:8000/product/add', productData);
+            const response = await axios.post(      `${API}/product/add`, productData);
 
             toast.success('Product added successfully!');
             setProducts([...products, response.data.product]);
@@ -163,7 +164,7 @@ function SupplierDashboard() {
                                         name="price"
                                         value={newProduct.price}
                                         onChange={handleInputChange}
-                                        className="w-full rounded-lg border-purple-200 focus:border-purple-500 focus:ring-purple-500"
+                                        className="w-full rounded-lg border-purple-200 focus:border-purple-500 focus:ring-purple-500 "
                                         placeholder="Enter price"
                                     />
                                 </div>

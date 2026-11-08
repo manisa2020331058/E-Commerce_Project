@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import { API } from './config';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-
 const AdminDashboard = () => {
     const [users, setUsers] = useState([]);
     const [products, setProducts] = useState([]);
@@ -13,7 +13,7 @@ const AdminDashboard = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/auth/users', {
+            const response = await axios.get(`${API}/auth/users`, {
                 headers: {
                     'userId': localStorage.getItem('userId'),
                     'user_type': localStorage.getItem('user_type')
@@ -33,7 +33,7 @@ const AdminDashboard = () => {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/product', {
+            const response = await axios.get(      `${API}/product`, {
                 headers: {
                     'userId': localStorage.getItem('userId'),
                     'user_type': localStorage.getItem('user_type')
@@ -48,7 +48,7 @@ const AdminDashboard = () => {
 
     const fetchSupplies = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/auth/supply', {
+            const response = await axios.get(      `${API}/auth/supply`, {
                 headers: {
                     'userId': localStorage.getItem('userId'),
                     'user_type': localStorage.getItem('user_type')

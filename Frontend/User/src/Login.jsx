@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { API } from './config';
 function Login() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post('http://localhost:8000/auth/login', {
+            const { data } = await axios.post(      `${API}/auth/login`, {
                 email: formData.email,
                 password: formData.password,
             });
@@ -83,7 +83,7 @@ function Login() {
                                                 value={formData.email}
                                                 onChange={handleChange}
                                                 required
-                                                className="block w-full rounded-lg border-0 py-2.5 px-4 text-green-900 shadow-sm ring-1 ring-inset ring-green-200 placeholder:text-green-400 focus:ring-2 focus:ring-inset focus:ring-green-500 sm:text-sm sm:leading-6 font-medium"
+                                                className="block w-full rounded-lg border-0 py-2.5 px-4 text-white shadow-sm ring-1 ring-inset ring-green-200 placeholder:text-green-400 focus:ring-2 focus:ring-inset focus:ring-green-500 sm:text-sm sm:leading-6 font-medium"
                                                 placeholder="Enter your email"
                                             />
                                         </div>
@@ -101,7 +101,7 @@ function Login() {
                                                 value={formData.password}
                                                 onChange={handleChange}
                                                 required
-                                                className="block w-full rounded-lg border-0 py-2.5 px-4 text-green-900 shadow-sm ring-1 ring-inset ring-green-200 placeholder:text-green-400 focus:ring-2 focus:ring-inset focus:ring-green-500 sm:text-sm sm:leading-6 font-medium"
+                                                className="block w-full rounded-lg border-0 py-2.5 px-4 text-white shadow-sm ring-1 ring-inset ring-green-200 placeholder:text-green-400 focus:ring-2 focus:ring-inset focus:ring-green-500 sm:text-sm sm:leading-6 font-medium"
                                                 placeholder="Enter your password"
                                             />
                                         </div>

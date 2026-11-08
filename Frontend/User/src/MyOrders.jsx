@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './components/Navbar';
+import { API } from './config';
 
 function MyOrders() {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ function MyOrders() {
     const fetchOrders = async () => {
         try {
             // First get user's orders
-            const response = await axios.get(`http://localhost:8000/profile/user/${userId}`);
+            const response = await axios.get(`${API}/profile/user/${userId}`);
             if (response.data && response.data.supplierProducts) {
                 const updatedOrders = response.data.supplierProducts.reverse();
                 

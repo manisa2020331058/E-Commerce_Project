@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import registerBg from './assets/loginbg.jpg';
+import { API } from './config';
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -48,7 +49,7 @@ function Register() {
         };
 
         try {
-            const response = await fetch('http://localhost:8000/auth/register', {
+            const response = await fetch(`${API}/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -114,7 +115,7 @@ function Register() {
                                                     value={formData.fullname}
                                                     onChange={handleChange}
                                                     required
-                                                    className="block w-full rounded-lg border-0 py-2.5 px-4 text-purple-900 shadow-sm ring-1 ring-inset ring-purple-200 placeholder:text-purple-400 focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm sm:leading-6 font-medium"
+                                                    className="block w-full rounded-lg border-0 py-2.5 px-4 text-white shadow-sm ring-1 ring-inset ring-purple-200 placeholder:text-purple-400 focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm sm:leading-6 font-medium"
                                                     placeholder="Enter your full name"
                                                 />
                                             </div>
@@ -132,7 +133,7 @@ function Register() {
                                                     value={formData.email}
                                                     onChange={handleChange}
                                                     required
-                                                    className="block w-full rounded-lg border-0 py-2.5 px-4 text-purple-900 shadow-sm ring-1 ring-inset ring-purple-200 placeholder:text-purple-400 focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm sm:leading-6 font-medium"
+                                                    className="block w-full rounded-lg border-0 py-2.5 px-4 text-white shadow-sm ring-1 ring-inset ring-purple-200 placeholder:text-purple-400 focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm sm:leading-6 font-medium"
                                                     placeholder="Enter your email"
                                                 />
                                             </div>
@@ -151,7 +152,7 @@ function Register() {
                                                     onChange={handleChange}
                                                     required
                                                     minLength={6}
-                                                    className="block w-full rounded-lg border-0 py-2.5 px-4 text-purple-900 shadow-sm ring-1 ring-inset ring-purple-200 placeholder:text-purple-400 focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm sm:leading-6 font-medium"
+                                                    className="block w-full rounded-lg border-0 py-2.5 px-4 text-white shadow-sm ring-1 ring-inset ring-purple-200 placeholder:text-purple-400 focus:ring-2 focus:ring-inset focus:ring-purple-500 sm:text-sm sm:leading-6 font-medium"
                                                     placeholder="Enter your password"
                                                 />
                                             </div>
