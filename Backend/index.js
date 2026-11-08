@@ -20,7 +20,9 @@ mongoose
   .catch((err) => {
     console.log("Error: ", err);
   });
-
+app.get("/", (req, res) => {
+  res.send("AuroraCart API is running 🚀");
+});
 app.use("/auth", require("./routes/auth"));
 app.use("/bank", require("./routes/bank"));
 app.use("/cart", require("./routes/cart"));

@@ -1,60 +1,245 @@
-# 🛒 E-Commerce Project
+# 🛒 AuroraCart: Full-Stack E-Commerce Platform
 
-A full-stack e-commerce web application where users can browse products, place orders, and manage accounts.
+AuroraCart is a full-stack, multi-role e-commerce web application built with the MERN stack (MongoDB, Express, React, Node.js). It brings four separate portals together in one system: a **shop for buyers**, a **dashboard for suppliers**, a **control panel for admins**, and a **bank portal** that handles payments.
 
----
-
-## 🚀 Features
-
-- User registration and login
-- Product browsing
-- Add to cart
-- Order placement
-- Admin dashboard (manage products/users)
-- Supplier & bank modules
+> 🔗 **Live demo:** 
+> - Shop: 
+> - Supplier: 
+> - Admin: 
+> - Bank: 
+> - API: `https://e-commerce-project-54kl.onrender.com`
 
 ---
 
-## 🏗️ Tech Stack
+## 📑 Table of Contents
 
-### Frontend:
-- React.js
-- HTML, CSS, JavaScript
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Environment Variables](#-environment-variables)
+- [Creating an Admin Account](#-creating-an-admin-account)
+- [API Overview](#-api-overview)
+- [Deployment](#-deployment)
+- [Troubleshooting](#-troubleshooting)
+- [Future Improvements](#-future-improvements)
+- [Author](#-author)
 
-### Backend:
-- Node.js
-- Express.js
+---
 
-### Database:
+## ✨ Features
+
+### 👤 Buyer (Shop)
+- Register and log in
+- Browse products by category
+- Add items to the cart
+- Choose a delivery address and place orders
+- Pay through the integrated bank module
+- Manage profile and addresses
+
+### 🏭 Supplier
+- Register and log in as a supplier
+- Add new products (name, description, price, original price, stock, category, image URL)
+- View and manage their own product list
+- Track incoming orders
+- Link a bank account for receiving payments
+
+### 🛡️ Admin
+- Secure admin-only login
+- Dashboard with totals for users, products, and supplies
+- User management table
+- Product management table
+
+### 🏦 Bank
+- Separate bank portal with its own login
+- Account number and secret key verification
+- Balance management for payments between buyers and suppliers
+
+### 🔐 Security
+- Passwords hashed with **bcrypt**
+- Role-based access: `buyer`, `supplier`, `bank`, `admin`
+- Secrets kept in environment variables (never committed)
+
+---
+
+## 🧰 Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **Frontend** | React, Vite, React Router, Axios, React Toastify |
+| **Styling** | Tailwind CSS, daisyUI |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB Atlas with Mongoose |
+| **Auth** | bcrypt password hashing, role-based access |
+| **Hosting** | Render (backend), Vercel (frontends) |
 
 ---
 
 ## 📂 Project Structure
 
-
+```
 E-Commerce_Project/
 │
 ├── Backend/
-│ ├── models/
-│ ├── routes/
-│ ├── index.js
+│   ├── models/          # Mongoose schemas (User, Bank, ...)
+│   ├── routes/          # auth, bank, cart, product, profile
+│   ├── pdfs/            # Generated PDF files (served statically)
+│   ├── index.js         # Express server entry point
+│   └── package.json
 │
 ├── Frontend/
-│ ├── Admin/
-│ ├── User/
-│ ├── Supplier/
-│ ├── Bank/
+│   ├── Admin/           # Admin dashboard (Vite + React)
+│   ├── User/            # Buyer shop (Vite + React)
+│   ├── Supplier/        # Supplier dashboard (Vite + React)
+│   └── Bank/            # Bank portal (Vite + React)
 │
 └── README.md
+```
 
+Each frontend is an independent Vite app with its own `package.json` and a shared pattern: `src/config.js` exports the backend URL as `API`.
 
 ---
 
-## ⚙️ Installation & Setup
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (LTS version)
+- [Git](https://git-scm.com/)
+- A free [MongoDB Atlas](https://www.mongodb.com/atlas) account
 
 ### 1. Clone the repository
 
 ```bash
 git clone https://github.com/manisa2020331058/E-Commerce_Project.git
 cd E-Commerce_Project
+```
 
+### 2. Set up the database
+
+1. Create a free **M0 cluster** on MongoDB Atlas.
+2. Under **Database Access**, create a database user.
+3. Under **Network Access**,
+4. Click **Connect → Drivers** and copy the connection string.
+
+### 3. Run the backend
+
+```bash
+cd Backend
+npm install
+```
+
+Create a `Backend/.env` file (see [Environment Variables](#-environment-variables)), then start the server:
+
+```bash
+npm start
+```
+
+You should see:
+
+```
+MyDB is connected
+server is running on port 8000
+```
+
+### 4. Run a frontend
+
+Open a new terminal for each frontend you want to run:
+
+```bash
+cd Frontend/User        # or Admin, Supplier, Bank
+npm install
+npm run dev
+```
+
+Vite prints the local address (usually `http://localhost:5173`). If that port is taken, it automatically uses the next free one (5174, 5175, and so on).
+
+---
+
+## 🔑 Environment Variables
+
+### Backend (`Backend/.env`)
+
+```env
+URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>
+PORT=8000
+```
+
+### Frontends
+
+Each frontend reads the backend address from `VITE_API_URL`. If it isn't set, it falls back to `http://localhost:8000`.
+
+```env
+VITE_API_URL= `https://e-commerce-project-54kl.onrender.com`
+```
+
+
+## 🔌 API Overview
+
+| Route prefix | Purpose |
+|---|---|
+| `/auth` | Registration, login, user and supply listing |
+| `/product` | Add, list, and fetch products (including by supplier) |
+| `/cart` | Cart handling and checkout |
+| `/bank` | Bank account verification and transactions |
+| `/profile` | User profile and delivery addresses |
+| `/pdfs` | Static files generated by the backend |
+
+---
+
+## ☁️ Deployment
+
+| Part | Platform |
+|---|---|
+| Database | MongoDB Atlas |
+| Backend (`Backend/`) | Render (Web Service) |
+| Frontends (`Frontend/*`) | Vercel (one project per frontend) |
+
+### Backend on Render
+
+- **Root Directory:** `Backend`
+- **Build Command:** `npm install`
+- **Start Command:** `npm start`
+- **Environment variables:** `URI` (Atlas connection string)
+
+### Each frontend on Vercel
+
+- **Root Directory:** `Frontend/Admin`, `Frontend/User`, `Frontend/Supplier`, or `Frontend/Bank`
+- **Environment variable:** `VITE_API_URL` = `https://e-commerce-project-54kl.onrender.com`
+```json
+{ "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }
+```
+
+> ℹ️ Render's free plan sleeps after inactivity, so the first request can take up to a minute.
+
+---
+
+## 🩺 Troubleshooting
+
+| Problem | Likely cause and fix |
+|---|---|
+| Login does nothing | The backend isn't running, or `VITE_API_URL` points to the wrong address |
+| "Connected" but no data in Atlas | `URI` points to a different cluster; check the host in the connection string |
+| Requests go to `localhost` after deploying | `VITE_API_URL` was set after the build; set it and **redeploy** |
+| 404 when refreshing a page | Missing `vercel.json` rewrite rule |
+| Product image doesn't show | The image URL must be a direct link to an image file (ending in `.jpg`, `.png`, and so on) |
+| `npm install` says no `package.json` | You're in the wrong folder; `cd` into `Backend` or the specific frontend folder |
+
+---
+
+## 🔮 Future Improvements
+
+- Token-based authentication (JWT) with protected routes
+- Image upload (Cloudinary) instead of pasting image URLs
+- Order tracking and status notifications
+- Product search, filters, and reviews
+- Persistent file storage for generated PDFs
+- Automated tests and a CI pipeline
+
+
+
+---
+
+## 📄 License
+
+This project is for educational purposes.
