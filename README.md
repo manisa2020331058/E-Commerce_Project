@@ -3,8 +3,8 @@
 AuroraCart is a full-stack, multi-role e-commerce web application built with the MERN stack (MongoDB, Express, React, Node.js). It brings four separate portals together in one system: a **shop for buyers**, a **dashboard for suppliers**, a **control panel for admins**, and a **bank portal** that handles payments.
 
 > 🔗 **Live demo:** 
-> - Shop: 
-> - Supplier: 
+> - Shop: `https://e-commerce-project-migf-gules.vercel.app/login`
+> - Supplier: `https://e-commerce-supplier.vercel.app`
 > - Admin: `https://e-commerce-project-three-tan.vercel.app`
 > - Bank: `https://e-commerce-project-bank.vercel.app/login`
 > - API: `https://e-commerce-project-54kl.onrender.com`
