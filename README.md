@@ -5,8 +5,8 @@ AuroraCart is a full-stack, multi-role e-commerce web application built with the
 > 🔗 **Live demo:** 
 > - Shop: 
 > - Supplier: 
-> - Admin: 
-> - Bank: 
+> - Admin: `https://e-commerce-project-three-tan.vercel.app`
+> - Bank: `https://e-commerce-project-bank.vercel.app/login`
 > - API: `https://e-commerce-project-54kl.onrender.com`
 
 ---

@@ -63,9 +63,7 @@ function Register() {
                 setAccountNumber(data.account_number);
                 setIsRegistered(true);
                 toast.success('Registration successful! Please save your account number.');
-                setTimeout(() => {
-                    navigate('/login');
-                }, 5000);
+                
             } else {
                 toast.error(`Registration failed: ${data.message}`);
             }
@@ -94,12 +92,33 @@ function Register() {
 
                             {isRegistered && accountNumber ? (
                                 <div className="mt-8 p-6 bg-purple-50 rounded-xl border border-purple-200">
-                                    <h3 className="text-xl font-semibold text-purple-800">Registration Successful!</h3>
-                                    <p className="mt-3 text-sm text-purple-600">Your account number is:</p>
-                                    <p className="mt-2 text-2xl font-bold text-purple-700 font-mono">{accountNumber}</p>
-                                    <p className="mt-4 text-sm text-purple-600">Please save this number. You will need it for logging in.</p>
-                                    <p className="mt-2 text-sm text-purple-500">Redirecting to login page in 5 seconds...</p>
-                                </div>
+    <h3 className="text-xl font-semibold text-purple-800">Registration Successful!</h3>
+    <p className="mt-3 text-sm text-purple-600">Your account number is:</p>
+    <p className="mt-2 text-2xl font-bold text-purple-700 font-mono select-all">{accountNumber}</p>
+
+    <button
+        type="button"
+        onClick={() => {
+            navigator.clipboard.writeText(accountNumber);
+            toast.info('Account number copied!');
+        }}
+        className="mt-3 rounded-lg border border-purple-300 px-3 py-1 text-sm text-purple-700 hover:bg-purple-100"
+    >
+        Copy account number
+    </button>
+
+    <p className="mt-4 text-sm text-purple-600">
+        Please save this number somewhere safe. You will need it to log in to the bank.
+    </p>
+
+    <button
+        type="button"
+        onClick={() => navigate('/login')}
+        className="mt-4 w-full rounded-lg bg-purple-600 px-4 py-3 text-sm font-semibold text-white hover:bg-purple-700"
+    >
+        I have saved it, continue to login
+    </button>
+</div>
                             ) : (
                                 <div className="mt-8">
                                     <form onSubmit={handleSubmit} className="space-y-6">
